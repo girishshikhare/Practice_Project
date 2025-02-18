@@ -4,9 +4,15 @@ jobs:
     Validation:
       runs-on: ubuntu-latest
       steps:
+        - name: Get code
+          uses: actions/checkout@v3
+        - name: Install Dependencies
+          run: npm ci
         - name : Lint
-          run: eslint --ext .jsx --fix src
+          run: npm run lint
         - name: Test
-          run: vitest run
+          run: npm run test
+        - name: Build
+          run: npm run build
         - name: Deploy
-          run: vite preview
+          run: echo "Deploying"
